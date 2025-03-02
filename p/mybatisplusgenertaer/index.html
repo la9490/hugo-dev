@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="\n一、前言 MyBatis-Plus作为MyBatis的增强工具，提供了强大的代码生成器功能。通过简单的配置即可快速生成Entity、Mapper、Service、Controller等基础代码，极大提升开发效率，在常规CRUD开发中，基础代码编写往往消耗30%以上的开发时间。MyBatis-Plus代码生成器通过以下优势显著提效：\n">
 <title>Mybatisplusgenertaer</title>
 
 <link rel='canonical' href='https://la9490.github.io/hugo-dev/p/mybatisplusgenertaer/'>
 
 <link rel="stylesheet" href="/hugo-dev/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Mybatisplusgenertaer">
-<meta property='og:description' content="">
+<meta property='og:description' content="\n一、前言 MyBatis-Plus作为MyBatis的增强工具，提供了强大的代码生成器功能。通过简单的配置即可快速生成Entity、Mapper、Service、Controller等基础代码，极大提升开发效率，在常规CRUD开发中，基础代码编写往往消耗30%以上的开发时间。MyBatis-Plus代码生成器通过以下优势显著提效：\n">
 <meta property='og:url' content='https://la9490.github.io/hugo-dev/p/mybatisplusgenertaer/'>
 <meta property='og:site_name' content='哈哈'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-02T22:16:33&#43;08:00'/><meta property='article:modified_time' content='2025-03-02T22:16:33&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-02T22:16:33&#43;08:00'/><meta property='article:modified_time' content='2025-03-02T22:16:33&#43;08:00'/><meta property='og:image' content='https://la9490.github.io/hugo-dev/p/mybatisplusgenertaer/mybatisplus.png' />
 <meta name="twitter:title" content="Mybatisplusgenertaer">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="\n一、前言 MyBatis-Plus作为MyBatis的增强工具，提供了强大的代码生成器功能。通过简单的配置即可快速生成Entity、Mapper、Service、Controller等基础代码，极大提升开发效率，在常规CRUD开发中，基础代码编写往往消耗30%以上的开发时间。MyBatis-Plus代码生成器通过以下优势显著提效：\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://la9490.github.io/hugo-dev/p/mybatisplusgenertaer/mybatisplus.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -245,11 +246,79 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一前言">一、前言</a></li>
+    <li><a href="#二环境准备">二、环境准备</a>
+      <ol>
+        <li><a href="#1-添加依赖">1. 添加依赖</a></li>
+        <li><a href="#2-代码生成器类">2. 代码生成器类</a></li>
+      </ol>
+    </li>
+    <li><a href="#三核心配置解析">三、核心配置解析</a>
+      <ol>
+        <li><a href="#1-基础配置">1. 基础配置</a></li>
+        <li><a href="#2-全局配置">2. 全局配置</a></li>
+        <li><a href="#3-数据源配置">3. 数据源配置</a></li>
+        <li><a href="#4-包路径配置">4. 包路径配置</a></li>
+        <li><a href="#5-生成策略配置">5. 生成策略配置</a></li>
+      </ol>
+    </li>
+    <li><a href="#四特色功能说明">四、特色功能说明</a>
+      <ol>
+        <li><a href="#1-自定义类型转换">1. 自定义类型转换</a></li>
+        <li><a href="#2-模板引擎配置">2. 模板引擎配置</a></li>
+        <li><a href="#3-路径管理">3. 路径管理</a></li>
+      </ol>
+    </li>
+    <li><a href="#五使用说明">五、使用说明</a></li>
+    <li><a href="#六生成效果">六、生成效果</a></li>
+    <li><a href="#七总结">七、总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/hugo-dev/p/mybatisplusgenertaer/">
+                <img src="/hugo-dev/p/mybatisplusgenertaer/mybatisplus_hu_11f08cbeb52f344a.png"
+                        srcset="/hugo-dev/p/mybatisplusgenertaer/mybatisplus_hu_11f08cbeb52f344a.png 800w, /hugo-dev/p/mybatisplusgenertaer/mybatisplus_hu_d42e3863b56f79c3.png 1600w"
+                        width="800" 
+                        height="409" 
+                        loading="lazy"
+                        alt="Featured image of post Mybatisplusgenertaer" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
     
@@ -293,7 +362,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -308,7 +377,374 @@
     <section class="article-content">
     
     
-    
+    <p><img src="/hugo-dev/p/mybatisplusgenertaer/mybatisplus.png"
+	width="1406"
+	height="719"
+	srcset="/hugo-dev/p/mybatisplusgenertaer/mybatisplus_hu_40e8638426395e1d.png 480w, /hugo-dev/p/mybatisplusgenertaer/mybatisplus_hu_32bc7087245d3c31.png 1024w"
+	loading="lazy"
+	
+		alt="mybatisplus"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="195"
+		data-flex-basis="469px"
+	
+></p>
+<h2 id="一前言">一、前言
+</h2><p>MyBatis-Plus作为MyBatis的增强工具，提供了强大的代码生成器功能。通过简单的配置即可快速生成Entity、Mapper、Service、Controller等基础代码，极大提升开发效率，<font style="background-color:rgba(255, 255, 255, 0);">在常规CRUD开发中，基础代码编写往往消耗30%以上的开发时间。MyBatis-Plus代码生成器通过以下优势显著提效：</font></p>
+<p><strong><font style="background-color:rgba(255, 255, 255, 0);">    标准化输出</font></strong><font style="background-color:rgba(255, 255, 255, 0);">：统一Entity/DAO/Service代码规范</font></p>
+<p><strong><font style="background-color:rgba(255, 255, 255, 0);">    动态配置</font></strong><font style="background-color:rgba(255, 255, 255, 0);">：支持表前缀过滤、字段类型映射等个性化配置</font></p>
+<p><strong><font style="background-color:rgba(255, 255, 255, 0);">    模板扩展</font></strong><font style="background-color:rgba(255, 255, 255, 0);">：Freemarker模板引擎支持深度定制</font></p>
+<p><strong><font style="background-color:rgba(255, 255, 255, 0);">    批量生成</font></strong><font style="background-color:rgba(255, 255, 255, 0);">：支持多表/多模块同时生成</font></p>
+<p><font style="background-color:rgba(255, 255, 255, 0);">官网地址：</font><a class="link" href="https://baomidou.com/guides/code-generator/"  target="_blank" rel="noopener"
+    ><font style="background-color:rgba(255, 255, 255, 0);">https://baomidou.com/guides/code-generator/</font></a></p>
+<hr>
+<h2 id="二环境准备">二、环境准备
+</h2><h3 id="1-添加依赖">1. 添加依赖
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;groupId&gt;</span>com.baomidou<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;artifactId&gt;</span>mybatis-plus-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;version&gt;</span>3.5.4<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;groupId&gt;</span>com.baomidou<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;artifactId&gt;</span>mybatis-plus-generator<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;version&gt;</span>3.5.4<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-代码生成器类">2. 代码生成器类
+</h3><p>创建<code>CodeGenerator</code>类作为代码生成入口，建议在项目test目录下创建。</p>
+<hr>
+<h2 id="三核心配置解析">三、核心配置解析
+</h2><h3 id="1-基础配置">1. 基础配置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;jdbc:mysql:///drmp&#34;</span><span class="p">;</span><span class="w">  </span><span class="c1">// 数据库地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;root&#34;</span><span class="p">;</span><span class="w">          </span><span class="c1">// 数据库账号</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;123456&#34;</span><span class="p">;</span><span class="w">        </span><span class="c1">// 数据库密码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">moduleName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;sys&#34;</span><span class="p">;</span><span class="w">         </span><span class="c1">// 模块名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">tables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;d_recommend&#34;</span><span class="p">;</span><span class="w">     </span><span class="c1">// 要生成的表名</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-全局配置">2. 全局配置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">.</span><span class="na">globalConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">builder</span><span class="p">.</span><span class="na">author</span><span class="p">(</span><span class="s">&#34;db&#34;</span><span class="p">)</span><span class="w">        </span><span class="c1">// 开发者署名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">disableOpenDir</span><span class="p">()</span><span class="w">          </span><span class="c1">// 禁用生成后打开目录</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">outputDir</span><span class="p">(</span><span class="s">&#34;E:\\...\\java&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 代码输出路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">})</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-数据源配置">3. 数据源配置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">.</span><span class="na">dataSourceConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="n">builder</span><span class="p">.</span><span class="na">typeConvertHandler</span><span class="p">((</span><span class="n">globalConfig</span><span class="p">,</span><span class="w"> </span><span class="n">typeRegistry</span><span class="p">,</span><span class="w"> </span><span class="n">metaInfo</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                      </span><span class="kt">int</span><span class="w"> </span><span class="n">typeCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metaInfo</span><span class="p">.</span><span class="na">getJdbcType</span><span class="p">().</span><span class="na">TYPE_CODE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">typeCode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">SMALLINT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="k">return</span><span class="w"> </span><span class="n">DbColumnType</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">;</span><span class="w"> </span><span class="c1">// 自定义类型转换</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                      </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                      </span><span class="k">return</span><span class="w"> </span><span class="n">typeRegistry</span><span class="p">.</span><span class="na">getColumnType</span><span class="p">(</span><span class="n">metaInfo</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-包路径配置">4. 包路径配置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">.</span><span class="na">packageConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="n">builder</span><span class="p">.</span><span class="na">parent</span><span class="p">(</span><span class="s">&#34;com.db&#34;</span><span class="p">)</span><span class="w">     </span><span class="c1">// 父包名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="p">.</span><span class="na">moduleName</span><span class="p">(</span><span class="n">moduleName</span><span class="p">)</span><span class="w">     </span><span class="c1">// 模块名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="p">.</span><span class="na">pathInfo</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonMap</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">OutputFile</span><span class="p">.</span><span class="na">xml</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="s">&#34;E:\\...\\mapper\\&#34;</span><span class="o">+</span><span class="n">moduleName</span><span class="w"> </span><span class="c1">// XML路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-生成策略配置">5. 生成策略配置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">.</span><span class="na">strategyConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">builder</span><span class="p">.</span><span class="na">addInclude</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="w">     </span><span class="c1">// 指定生成表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">addTablePrefix</span><span class="p">(</span><span class="s">&#34;d_&#34;</span><span class="p">)</span><span class="w">      </span><span class="c1">// 过滤表前缀</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="四特色功能说明">四、特色功能说明
+</h2><h3 id="1-自定义类型转换">1. 自定义类型转换
+</h3><p>通过<code>typeConvertHandler</code>实现数据库类型到Java类型的自定义映射：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 将SMALLINT转换为Integer类型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">typeCode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">SMALLINT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DbColumnType</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-模板引擎配置">2. 模板引擎配置
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">.</span><span class="na">templateEngine</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FreemarkerTemplateEngine</span><span class="p">())</span><span class="w"> </span><span class="c1">// 使用Freemarker模板</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-路径管理">3. 路径管理
+</h3><pre><code>Java代码输出路径：`outputDir()`
+
+XML文件路径：通过`pathInfo`单独配置
+</code></pre>
+<hr>
+<h2 id="五使用说明">五、使用说明
+</h2><p><strong>修改表名</strong><br>
+修改<code>tables</code>变量值即可生成不同表的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">tables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;d_user,d_order&#34;</span><span class="p">;</span><span class="w"> </span><span class="c1">// 多表用逗号分隔</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>配置模块</strong><br>
+修改<code>moduleName</code>指定模块目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">moduleName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;business&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><strong>执行生成</strong><br>
+直接运行Java类方法即可生成代码</li>
+</ol>
+<hr>
+<h2 id="六生成效果">六、生成效果
+</h2><p>完整代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.db</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.baomidou.mybatisplus.generator.FastAutoGenerator</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.baomidou.mybatisplus.generator.config.OutputFile</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.baomidou.mybatisplus.generator.config.rules.DbColumnType</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.Types</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Collections</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CodeGenerator</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="o">=</span><span class="w"> </span><span class="s">&#34;jdbc:mysql:///drmp&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="w"> </span><span class="s">&#34;root&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="o">=</span><span class="w"> </span><span class="s">&#34;123456&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">moduleName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;sys&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">mapperLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;E:\\DRMP\\SourceCode\\backdrmp\\src\\main\\resources\\mapper\\&#34;</span><span class="o">+</span><span class="n">moduleName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">tables</span><span class="o">=</span><span class="w"> </span><span class="s">&#34;d_recommend&#34;</span><span class="p">;</span><span class="c1">//更改表名可以生成不同代码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">FastAutoGenerator</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">globalConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">builder</span><span class="p">.</span><span class="na">author</span><span class="p">(</span><span class="s">&#34;db&#34;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 设置作者</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">disableOpenDir</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// .enableSwagger() // 开启 swagger 模式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 覆盖已生成文件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">outputDir</span><span class="p">(</span><span class="s">&#34;E:\\DRMP\\SourceCode\\Backend\\backdrmp\\src\\main\\java&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 指定输出目录</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">dataSourceConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="n">builder</span><span class="p">.</span><span class="na">typeConvertHandler</span><span class="p">((</span><span class="n">globalConfig</span><span class="p">,</span><span class="w"> </span><span class="n">typeRegistry</span><span class="p">,</span><span class="w"> </span><span class="n">metaInfo</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                              </span><span class="kt">int</span><span class="w"> </span><span class="n">typeCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metaInfo</span><span class="p">.</span><span class="na">getJdbcType</span><span class="p">().</span><span class="na">TYPE_CODE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                              </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">typeCode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">SMALLINT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                  </span><span class="c1">// 自定义类型转换</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                  </span><span class="k">return</span><span class="w"> </span><span class="n">DbColumnType</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                              </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                              </span><span class="k">return</span><span class="w"> </span><span class="n">typeRegistry</span><span class="p">.</span><span class="na">getColumnType</span><span class="p">(</span><span class="n">metaInfo</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                         </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">packageConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                       </span><span class="n">builder</span><span class="p">.</span><span class="na">parent</span><span class="p">(</span><span class="s">&#34;com.db&#34;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 设置父包名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                       </span><span class="p">.</span><span class="na">moduleName</span><span class="p">(</span><span class="n">moduleName</span><span class="p">)</span><span class="w"> </span><span class="c1">// 设置父包模块名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                       </span><span class="p">.</span><span class="na">pathInfo</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonMap</span><span class="p">(</span><span class="n">OutputFile</span><span class="p">.</span><span class="na">xml</span><span class="p">,</span><span class="w"> </span><span class="n">mapperLocation</span><span class="p">))</span><span class="w"> </span><span class="c1">// 设置mapperXml生成路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                      </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">strategyConfig</span><span class="p">(</span><span class="n">builder</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">builder</span><span class="p">.</span><span class="na">addInclude</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="w"> </span><span class="c1">// 设置需要生成的表名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="p">.</span><span class="na">addTablePrefix</span><span class="p">(</span><span class="s">&#34;d_&#34;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 设置过滤表前缀</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                       </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">templateEngine</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FreemarkerTemplateEngine</span><span class="p">())</span><span class="w"> </span><span class="c1">// 使用Freemarker引擎模板，默认的是Velocity引擎模板</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成的代码结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">src
+</span></span><span class="line"><span class="cl">├── main
+</span></span><span class="line"><span class="cl">│   ├── java
+</span></span><span class="line"><span class="cl">│   │   └── com
+</span></span><span class="line"><span class="cl">│   │       └── db
+</span></span><span class="line"><span class="cl">│   │           └── sys
+</span></span><span class="line"><span class="cl">│   │               ├── controller
+</span></span><span class="line"><span class="cl">│   │               ├── entity
+</span></span><span class="line"><span class="cl">│   │               ├── mapper
+</span></span><span class="line"><span class="cl">│   │               └── service
+</span></span><span class="line"><span class="cl">│   └── resources
+</span></span><span class="line"><span class="cl">│       └── mapper
+</span></span><span class="line"><span class="cl">│           └── sys
+</span></span><span class="line"><span class="cl">│               └── DRecommendMapper.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="七总结">七、总结
+</h2><p>通过本配置可以实现：</p>
+<ol>
+<li>快速生成全套CRUD代码</li>
+<li>自动处理表前缀</li>
+<li>自定义类型映射</li>
+<li>模块化代码管理</li>
+<li>模板文件灵活配置</li>
+</ol>
+<p>建议将生成器代码整合到项目中，在表结构变更时快速重新生成代码，提升开发效率。实际使用时注意修改数据库连接信息和文件路径。生成前建议备份原有代码，避免覆盖重要修改。对于定制化需求，可通过自定义模板实现。</p>
+
 </section>
 
 
