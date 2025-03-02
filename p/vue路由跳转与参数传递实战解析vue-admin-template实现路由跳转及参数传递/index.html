@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在Vue.js应用开发中，路由管理是实现单页应用（SPA）的核心环节。本文将深入讲解如何通过Vue Router实现页面跳转时的参数传递，并优雅地在目标页面获取这些参数。我们将以实际代码示例为基础，解析其中的实现原理和最佳实践。\n">
+<title>Vue路由跳转与参数传递实战解析：vue-admin-template实现路由跳转及参数传递</title>
+
+<link rel='canonical' href='https://la9490.github.io/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/'>
+
+<link rel="stylesheet" href="/hugo-dev/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Vue路由跳转与参数传递实战解析：vue-admin-template实现路由跳转及参数传递">
+<meta property='og:description' content="在Vue.js应用开发中，路由管理是实现单页应用（SPA）的核心环节。本文将深入讲解如何通过Vue Router实现页面跳转时的参数传递，并优雅地在目标页面获取这些参数。我们将以实际代码示例为基础，解析其中的实现原理和最佳实践。\n">
+<meta property='og:url' content='https://la9490.github.io/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/'>
+<meta property='og:site_name' content='哈哈'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-02T23:04:36&#43;08:00'/><meta property='article:modified_time' content='2025-03-02T23:04:36&#43;08:00'/><meta property='og:image' content='https://la9490.github.io/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/vue-router.png' />
+<meta name="twitter:title" content="Vue路由跳转与参数传递实战解析：vue-admin-template实现路由跳转及参数传递">
+<meta name="twitter:description" content="在Vue.js应用开发中，路由管理是实现单页应用（SPA）的核心环节。本文将深入讲解如何通过Vue Router实现页面跳转时的参数传递，并优雅地在目标页面获取这些参数。我们将以实际代码示例为基础，解析其中的实现原理和最佳实践。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://la9490.github.io/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/vue-router.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/hugo-dev/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/hugo-dev/img/avatar_hu_8d4a814b7289a383.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐬</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/hugo-dev">哈哈</a></h1>
+            <h2 class="site-description">欢迎来到哈哈的个人博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/hugo-dev/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一路由跳转实现"><font style="color:#000000;">一、路由跳转实现</font></a>
+      <ol>
+        <li><a href="#11-基本路由跳转语法"><font style="color:#000000;">1.1 基本路由跳转语法</font></a></li>
+        <li><a href="#12-关键要素解析">1.2 关键要素解析</a></li>
+      </ol>
+    </li>
+    <li><a href="#二参数获取方案">二、参数获取方案</a>
+      <ol>
+        <li><a href="#21-计算属性实现">2.1 计算属性实现</a></li>
+        <li><a href="#22-方案优势分析">2.2 方案优势分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#三完整实现流程">三、完整实现流程</a>
+      <ol>
+        <li><a href="#31-路由配置routerjs">3.1 路由配置（router.js）</a></li>
+        <li><a href="#32-源页面sourcepagevue">3.2 源页面（SourcePage.vue）</a></li>
+        <li><a href="#33-目标页面detailpagevue">3.3 目标页面（DetailPage.vue）</a></li>
+      </ol>
+    </li>
+    <li><a href="#四最佳实践建议">四、最佳实践建议</a></li>
+    <li><a href="#五常见问题排查">五、常见问题排查</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/">
+                <img src="/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/vue-router_hu_31c4718e7418c77e.png"
+                        srcset="/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/vue-router_hu_31c4718e7418c77e.png 800w, /hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/vue-router_hu_a18a0c3d6c3423a8.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post Vue路由跳转与参数传递实战解析：vue-admin-template实现路由跳转及参数传递" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/hugo-dev/p/vue%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%AE%9E%E6%88%98%E8%A7%A3%E6%9E%90vue-admin-template%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/">Vue路由跳转与参数传递实战解析：vue-admin-template实现路由跳转及参数传递</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-02</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>在<font style="color:#000000;">Vue.js应用开发中，路由管理是实现单页应用（SPA）的核心环节。本文将深入讲解如何通过Vue Router实现页面跳转时的参数传递，并优雅地在目标页面获取这些参数。我们将以实际代码示例为基础，解析其中的实现原理和最佳实践。</font></p>
+<hr>
+<h2 id="一路由跳转实现"><font style="color:#000000;">一、路由跳转实现</font>
+</h2><h3 id="11-基本路由跳转语法"><font style="color:#000000;">1.1 基本路由跳转语法</font>
+</h3><p><font style="color:#000000;">       在Vue组件中，我们可以通过</font><code>&lt;font style=&quot;color:#000000;&quot;&gt;$router.push&lt;/font&gt;</code><font style="color:#000000;">方法实现编程式导航。以下是一个典型的路由跳转示例：</font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> 
+</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;$router.push({
+</span></span></span><span class="line"><span class="cl"><span class="s">    name: &#39;webResourceShowDetail&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="s">    query: { webId: webId }
+</span></span></span><span class="line"><span class="cl"><span class="s">    })&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">查看详情</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-关键要素解析">1.2 关键要素解析
+</h3><p>**     路由命名（name属性）**</p>
+<p><font style="color:#000000;">       </font><code>name: 'webResourceShowDetail'</code> 表示使用路由配置中定义的名称进行跳转</p>
+<p>对应的路由配置示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/detail&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;webResourceShowDetail&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">component</span><span class="o">:</span> <span class="nx">DetailPage</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**    1、参数传递（query属性）**</p>
+<p><font style="color:#000000;">       </font>使用query对象传递URL参数</p>
+<p><font style="color:#000000;">       </font>生成的实际URL示例：<code>/detail?webId=123</code></p>
+<p><font style="color:#000000;">       </font>与params的区别：</p>
+<p><font style="color:#000000;">           </font>query参数显示在URL中，页面刷新后参数不丢失</p>
+<p><font style="color:#000000;">           </font>params参数需要定义在路由路径中（如<code>/detail/:webId</code>）</p>
+<p>**    2、响应式参数绑定**</p>
+<p><font style="color:#000000;">       </font><code>webId</code>通常来自当前组件的数据状态（data）或props</p>
+<p><font style="color:#000000;">        </font>支持动态参数传递，适用于需要携带变量值的场景</p>
+<hr>
+<h2 id="二参数获取方案">二、参数获取方案
+</h2><h3 id="21-计算属性实现">2.1 计算属性实现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">webId</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$route</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">webId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-方案优势分析">2.2 方案优势分析
+</h3><p>**    1、响应式特性**</p>
+<p><font style="color:#000000;">       </font>自动响应路由参数变化</p>
+<p><font style="color:#000000;">       </font>当URL中的webId变化时，计算属性自动更新</p>
+<p><font style="color:#000000;">       </font>无需手动监听路由变化</p>
+<p>**    2、缓存机制**</p>
+<p><font style="color:#000000;">       </font>基于依赖的缓存系统（依赖<code>$route.query.webId</code>）</p>
+<p><font style="color:#000000;">       </font>相同参数值不会重复计算</p>
+<p>**    3、代码简洁性**</p>
+<p><font style="color:#000000;">       </font>避免在created/mounted等生命周期中写重复代码</p>
+<p><font style="color:#000000;">       </font>保持组件逻辑的简洁性</p>
+<hr>
+<h2 id="三完整实现流程">三、完整实现流程
+</h2><h3 id="31-路由配置routerjs">3.1 路由配置（router.js）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">DetailPage</span> <span class="nx">from</span> <span class="s1">&#39;@/views/DetailPage.vue&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/detail&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;webResourceShowDetail&#39;</span><span class="p">,</span> <span class="c1">// 保持与跳转时使用的name一致
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">component</span><span class="o">:</span> <span class="nx">DetailPage</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 可选：配置props将query转为props
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">props</span><span class="o">:</span> <span class="p">(</span><span class="nx">route</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span> <span class="nx">webId</span><span class="o">:</span> <span class="nx">route</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">webId</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="32-源页面sourcepagevue">3.2 源页面（SourcePage.vue）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">currentWebId</span><span class="o">:</span> <span class="s1">&#39;123&#39;</span> <span class="c1">// 示例数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;$router.push({
+</span></span></span><span class="line"><span class="cl"><span class="s">    name: &#39;webResourceShowDetail&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="s">    query: { webId: currentWebId }
+</span></span></span><span class="line"><span class="cl"><span class="s">    })&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">查看详情</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-目标页面detailpagevue">3.3 目标页面（DetailPage.vue）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">webId</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 带默认值的改进实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$route</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">webId</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 备选方案：通过watch监听参数变化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;$route.query.webId&#39;</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">loadData</span><span class="p">(</span><span class="nx">newVal</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">async</span> <span class="nx">loadData</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 发起API请求获取详情数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="四最佳实践建议">四、最佳实践建议
+</h2><p>**     1、参数校验**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="nx">webId</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$route</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">webId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="sr">/^\d+$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">?</span> <span class="nx">id</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**     2、错误处理**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">webId</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">$router</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;/error?type=invalid_id&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**     3、路由参数类型转换**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="c1">// 将字符串参数转为数值类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">webId</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">Number</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$route</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">webId</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**     4、多参数处理**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="nx">$router</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;detail&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">query</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">webId</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;article&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="五常见问题排查">五、常见问题排查
+</h2><p>**     1、路由名称不匹配**</p>
+<p><font style="color:#000000;">       </font>症状：跳转后页面空白/404</p>
+<p><font style="color:#000000;">       </font>检查：确保路由配置中的name与跳转使用的name完全一致</p>
+<p>**     2、参数未定义**</p>
+<p><font style="color:#000000;">       </font>症状：获取到的webId为undefined</p>
+<p><font style="color:#000000;">       </font>处理：添加默认值<code>this.$route.query.webId || ''</code></p>
+<p>**     3、编码问题**</p>
+<p><font style="color:#000000;">       </font>注意：复杂参数建议使用encodeURIComponent处理</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="nx">query</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">search</span><span class="o">:</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="s1">&#39;vue&amp;router&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="结语">结语
+</h2><pre><code>   通过本文的讲解，我们掌握了Vue路由跳转与参数传递的核心技术。计算属性与路由系统的结合使用，为我们提供了响应式、声明式的参数处理方案。在实际项目中，建议根据业务需求选择最合适的参数传递方式（query vs params），并做好参数校验和错误处理，以构建健壮的Vue应用。
+</code></pre>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 哈哈
+    </section>
+    
+    <section class="powerby">
+        
+            1565452 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/hugo-dev/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
